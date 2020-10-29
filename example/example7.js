@@ -87,5 +87,7 @@ var letExpr = skip(literal("(let ").transform(pushEnv)).concat(id.skip(literal("
 expr.set(posInt.or(negInt).or(idExpr).or(addExpr).or(mulExpr).or(letExpr));
 
 var r = expr.parse("(let var 78 b 77 (let c 33 (add c (mult var 66))))");
-console.log(r[0]);
-console.log(r[1]);
+if (r == null || r[1] != "")
+    console.log("语法错误");
+else
+    console.log(r[0]);
